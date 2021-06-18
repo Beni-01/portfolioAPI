@@ -7,18 +7,18 @@ const selectAllProjet = (connexion, res) => {
   });
 };
 
-const insertProjet = (connexion, body, res) => {
+const insertProjet = (connexion, resource, res) => {
   // const { img, title, description, mention, lien } = body;
   connexion.query(
     "INSERT INTO Projet(img,titre,description,mention,lien) VALUES (?,?,?,?,?,?)",
-    body,
+    resource,
     (err) => {
       if (err) {
         return console.error(
           "une erreur s'est produite lors de l'enregistrement"
         );
       }
-      res.status(200).send("success");
+      res.status(200).send("succé");
     }
   );
 };
@@ -28,6 +28,26 @@ const deleteProject = (connexion, id, res) => {
     if (err) {
       return console.error("une erreur est détecté");
     }
-    res.status(200).send("success");
+    res.status(200).send("succé");
   });
+};
+
+const updateProject = (connexion, resource, res) => {
+  connexion.query(
+    "UPDATE Projet SET description=? WHERE id=?",
+    resource,
+    (err) => {
+      if (err) {
+        return console.error("erreur a été détecté");
+      }
+      res.status(200).send("succé");
+    }
+  );
+};
+
+module.exports = {
+  selectAllProjet,
+  insertProjet,
+  deleteProject,
+  updateProject,
 };
