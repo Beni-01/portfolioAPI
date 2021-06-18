@@ -10,7 +10,7 @@ const selectAllProjet = (connexion, res) => {
 const insertProjet = (connexion, resource, res) => {
   // const { img, title, description, mention, lien } = body;
   connexion.query(
-    "INSERT INTO Projet(img,titre,description,mention,lien) VALUES (?,?,?,?,?,?)",
+    "INSERT INTO Projet(img,titre,description,mention,lien) VALUES (?,?,?,?,?)",
     resource,
     (err) => {
       if (err) {
@@ -24,7 +24,7 @@ const insertProjet = (connexion, resource, res) => {
 };
 
 const deleteProject = (connexion, id, res) => {
-  connexion.query("DELETE FROM Projet WHERE id=?", id, (err) => {
+  connexion.query("DELETE FROM Projet WHERE id_projet=?", id, (err) => {
     if (err) {
       return console.error("une erreur est détecté");
     }
@@ -34,7 +34,7 @@ const deleteProject = (connexion, id, res) => {
 
 const updateProject = (connexion, resource, res) => {
   connexion.query(
-    "UPDATE Projet SET description=? WHERE id=?",
+    "UPDATE Projet SET description=? WHERE id_projet=?",
     resource,
     (err) => {
       if (err) {
